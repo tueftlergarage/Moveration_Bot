@@ -7,9 +7,7 @@ import javax.security.auth.login.LoginException;
 
 public class Main {
     public static void main(String[] args) throws LoginException {
-
-        JDA jda = JDABuilder.createDefault("token").build();
-
+        JDA jda = JDABuilder.createDefault(TokenReader.getToken()).build();
     }
 
 }
