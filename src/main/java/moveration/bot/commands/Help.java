@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class Help implements Command {
 
-    //public String prefix = "M!";
     @Override
     public boolean matches(GenericEvent event) {
         return
