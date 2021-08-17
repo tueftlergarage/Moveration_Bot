@@ -9,9 +9,9 @@ import java.util.Objects;
 @UtilityClass
 public class Assert {
 
-    public static void allNotNull(@Nullable  Object... objects) {
-        if (Arrays.stream(objects).anyMatch(Objects::isNull))
-            throw new NullPointerException("Object was null");
-    }
+	public static void allNotNull(@Nullable Object... objects) {
+		if (Arrays.stream(objects).anyMatch(Objects::isNull))
+			throw new NullPointerException("Object was null");
+	}
 
 }
