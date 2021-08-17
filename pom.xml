@@ -74,9 +74,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.clojure</groupId>
-            <artifactId>java.jdbc</artifactId>
-            <version>0.7.12</version>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.36.0.1</version>
         </dependency>
     </dependencies>
 
