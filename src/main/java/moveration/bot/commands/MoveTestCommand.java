@@ -1,5 +1,6 @@
 package moveration.bot.commands;
 
+import moveration.bot.Constants;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.VoiceChannel;
@@ -12,7 +13,7 @@ public class MoveTestCommand implements Command {
     public boolean matches(GenericEvent event) {
         return
                 event instanceof GuildMessageReceivedEvent &&
-                        ((GuildMessageReceivedEvent) event).getMessage().getContentRaw().equalsIgnoreCase("move");
+                        ((GuildMessageReceivedEvent) event).getMessage().getContentRaw().equalsIgnoreCase(Constants.botprefix+"move");
     }
 
     @Override
