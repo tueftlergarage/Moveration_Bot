@@ -21,6 +21,10 @@ public class DataManager {
 		return guilds.stream().filter(guild -> guild.getGuildId() == guildId).findFirst().orElseThrow(NullPointerException::new);
 	}
 
+	public void addGuild(Guild guild) {
+		guilds.add(guild);
+	}
+
 	@SneakyThrows
 	public void loadData() {
 		preparePath();
