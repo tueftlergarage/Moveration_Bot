@@ -1,8 +1,9 @@
 package moveration.bot.commands;
 
 import lombok.val;
-import moveration.bot.util.Constants;
+import moveration.bot.data.DataManager;
 import moveration.bot.util.Assert;
+import moveration.bot.util.Constants;
 import moveration.bot.util.StringUtil;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -13,8 +14,8 @@ public class ChangePrefix implements Command {
 
 	@Override
 	public boolean matches(GenericEvent event) {
-		if (!(event instanceof GuildMessageReceivedEvent)) return false;
-		return StringUtil.stripPrefix(((GuildMessageReceivedEvent) event).getMessage().getContentRaw()).matches("changeprefix .+");
+		if (!(event instanceof GuildMessageReceivedEvent e)) return false;
+		return StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuild(e.getGuild().getIdLong())).matches("changeprefix .+");
 	}
 
 	@Override

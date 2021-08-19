@@ -41,6 +41,9 @@ public class Database implements DiskResource {
 						""";
 		val statement = connection.createStatement();
 		statement.executeQuery(s);
+		@Cleanup val stream = Files.newInputStream(databaseFile);
+		@Cleanup val writer = Files.newBufferedWriter(checksumFile);
+		writer.write(DigestUtils.md5Hex(stream));
 	}
 
 	@Override

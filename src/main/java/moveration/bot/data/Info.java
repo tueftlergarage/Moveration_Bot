@@ -14,10 +14,10 @@ import java.nio.file.Path;
 
 public class Info implements DiskResource {
 
+	private final Path infoFilePath;
 	private int dbVersion;
 	private int infoVersion;
 	private String prefix;
-	private final Path infoFilePath;
 
 	public Info(long guildId) {
 		infoFilePath = PathResolver.getInfoFile(guildId);
