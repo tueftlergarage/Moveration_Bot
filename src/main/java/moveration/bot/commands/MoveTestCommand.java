@@ -1,6 +1,7 @@
 package moveration.bot.commands;
 
 import lombok.val;
+import moveration.bot.data.DataManager;
 import moveration.bot.util.Assert;
 import moveration.bot.util.Emotes;
 import moveration.bot.util.StringUtil;
@@ -22,7 +23,7 @@ public class MoveTestCommand implements Command {
 	@Override
 	public boolean matches(GenericEvent event) {
 		if (event instanceof GuildMessageReceivedEvent e &&
-		    StringUtil.stripPrefix(e.getMessage().getContentRaw()).matches(regex))
+		    StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuild(e.getGuild().getIdLong())).matches(regex))
 			return true;
 		return event instanceof GuildMessageReactionAddEvent r &&
 		       sentMessages.contains(r.getReaction().getMessageIdLong());
