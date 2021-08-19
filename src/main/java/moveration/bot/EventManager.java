@@ -11,15 +11,15 @@ import java.util.LinkedList;
 @Log
 public class EventManager implements EventListener {
 
-	private final LinkedList<Command> commands = new LinkedList<>();
+	private final LinkedList<Command> events = new LinkedList<>();
 
 	public void registerCommand(Command c) {
-		commands.add(c);
+		events.add(c);
 	}
 
 	@Override
 	public void onEvent(@NonNull GenericEvent event) {
-		commands
+		events
 				.stream()
 				.filter(command -> command.matches(event))
 				.peek(command -> log.info(command.toString()))

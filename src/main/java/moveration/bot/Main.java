@@ -2,6 +2,7 @@ package moveration.bot;
 
 import lombok.SneakyThrows;
 import lombok.val;
+import moveration.bot.commands.ChangePrefix;
 import moveration.bot.commands.HelloWorld;
 import moveration.bot.commands.Help;
 import moveration.bot.commands.MoveTestCommand;
@@ -17,7 +18,7 @@ public class Main {
 		eventManager.registerCommand(new HelloWorld());
 		eventManager.registerCommand(new MoveTestCommand());
 		eventManager.registerCommand(new Help());
-		//eventManager.registerCommand(new ChangePrefix());
+		eventManager.registerCommand(new ChangePrefix());
 		jda.addEventListener(eventManager);
 	}
 }
