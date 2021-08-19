@@ -1,4 +1,4 @@
-package moveration.bot.security;
+package moveration.bot.io;
 
 import lombok.Cleanup;
 import lombok.SneakyThrows;
@@ -6,17 +6,15 @@ import lombok.experimental.UtilityClass;
 import lombok.val;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 @UtilityClass
 public class TokenReader {
 
 	@SneakyThrows
 	public String getToken() {
-		val tokenPath = Path.of(System.getProperty("user.home"), "moveration_files", "bot_token.txt");
-		if (!Files.exists(tokenPath) || !Files.isReadable(tokenPath))
+		if (!Files.exists(PathResolver.getTokenFile()) || !Files.isReadable(PathResolver.getTokenFile()))
 			throw new NullPointerException("Unable to read token-file");
-		@Cleanup val reader = Files.newBufferedReader(tokenPath);
+		@Cleanup val reader = Files.newBufferedReader(PathResolver.getTokenFile());
 		return reader.readLine();
 	}
 

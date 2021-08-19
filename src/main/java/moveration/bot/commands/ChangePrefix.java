@@ -22,6 +22,7 @@ public class ChangePrefix implements Command {
 		final GuildMessageReceivedEvent e = ((GuildMessageReceivedEvent) event);
 		val pattern = Pattern.compile("changeprefix (.+)");
 		val matcher = pattern.matcher(e.getMessage().getContentRaw());
+		matcher.find();
 		val newPrefix = matcher.group(1);
 		Assert.allNotNull(newPrefix);
 		e.getMessage().getChannel().sendMessage(String.format("Changing prefix from %s to %s", Constants.botprefix, newPrefix)).queue();

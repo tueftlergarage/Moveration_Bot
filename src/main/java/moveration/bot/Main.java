@@ -5,7 +5,7 @@ import lombok.val;
 import moveration.bot.commands.HelloWorld;
 import moveration.bot.commands.Help;
 import moveration.bot.commands.MoveTestCommand;
-import moveration.bot.security.TokenReader;
+import moveration.bot.io.TokenReader;
 import net.dv8tion.jda.api.JDABuilder;
 
 public class Main {
