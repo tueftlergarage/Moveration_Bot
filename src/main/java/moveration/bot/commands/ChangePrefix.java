@@ -1,7 +1,7 @@
 package moveration.bot.commands;
 
 import lombok.val;
-import moveration.bot.Constants;
+import moveration.bot.util.Constants;
 import moveration.bot.util.Assert;
 import moveration.bot.util.StringUtil;
 import net.dv8tion.jda.api.events.GenericEvent;
@@ -25,7 +25,7 @@ public class ChangePrefix implements Command {
 		matcher.find();
 		val newPrefix = matcher.group(1);
 		Assert.allNotNull(newPrefix);
-		e.getMessage().getChannel().sendMessage(String.format("Changing prefix from %s to %s", Constants.botprefix, newPrefix)).queue();
-		Constants.botprefix = newPrefix;
+		e.getMessage().getChannel().sendMessage(String.format("Changing prefix from %s to %s", Constants.BOT_PREFIX, newPrefix)).queue();
+		Constants.BOT_PREFIX = newPrefix;
 	}
 }

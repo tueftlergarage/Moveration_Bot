@@ -13,6 +13,10 @@ public class PathResolver {
 		return basePath.resolve("guilds").resolve(String.valueOf(guildId));
 	}
 
+	public Path getGuildFoldersPath() {
+		return basePath.resolve("guilds");
+	}
+
 	public Path getTokenFile() {
 		return basePath.resolve("bot_token.txt");
 	}

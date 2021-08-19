@@ -1,7 +1,6 @@
 package moveration.bot.util;
 
 import lombok.experimental.UtilityClass;
-import moveration.bot.Constants;
 
 @UtilityClass
 public class StringUtil {

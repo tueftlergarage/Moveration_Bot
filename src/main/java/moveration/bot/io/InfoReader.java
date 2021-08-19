@@ -40,12 +40,12 @@ public class InfoReader {
 		jsonObject.writeTo(writer, WriterConfig.PRETTY_PRINT);
 	}
 
-	private Info parseInfo() {
+	public Info parseInfo() {
 		return new Info(object.get("DbVersion").asInt(), object.get("InfoVersion").asInt(), object.get("Prefix").asString());
 	}
 
 	@SneakyThrows
-	private void writeInfo(Info info) {
+	public void writeInfo(Info info) {
 		val jsonObject = new JsonObject();
 		jsonObject.add("DbVersion", info.getDbVersion());
 		jsonObject.add("InfoVersion", info.getInfoVersion());
