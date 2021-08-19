@@ -23,10 +23,15 @@ public class DataManager {
 
 	@SneakyThrows
 	public void loadData() {
+		preparePath();
 		Files.list(PathResolver.getGuildFoldersPath()).forEach(path -> {
 			if (!Files.isDirectory(path)) log.info(String.format("Skipping non-folder %s", path));
 			else guilds.add(new Guild(Long.parseLong(path.getFileName().toString())));
 		});
 	}
 
+	@SneakyThrows
+	private void preparePath() {
+		Files.createDirectories(PathResolver.getGuildFoldersPath());
+	}
 }

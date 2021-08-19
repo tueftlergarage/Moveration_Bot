@@ -1,23 +1,28 @@
 package moveration.bot.data;
 
 import lombok.Getter;
-import moveration.bot.io.DBReader;
-import moveration.bot.io.InfoReader;
 
-//TODO add db-datatype
 @Getter
 public class Guild {
 
 	private final long guildId;
-	private final InfoReader infoReader;
-	private final DBReader dbReader;
+	private final Database database;
 	private final Info info;
 
-	public Guild(Long guildId) {
+	public Guild(long guildId) {
 		this.guildId = guildId;
-		this.infoReader = new InfoReader(guildId);
-		this.dbReader = new DBReader(guildId);
-		this.info = infoReader.parseInfo();
+		this.database = new Database(guildId);
+		this.info = new Info(guildId);
+		if (!database.exists())
+			database.createNew();
+		if (!info.exists())
+			info.createNew();
+		if (!database.isValid())
+			throw new IllegalArgumentException(String.format("Invalid database-file for guild %d", guildId));
+		database.load();
+		if (!info.isValid())
+			throw new IllegalArgumentException(String.format("Invalid info-file for guild %d", guildId));
+		info.load();
 	}
 
 }
