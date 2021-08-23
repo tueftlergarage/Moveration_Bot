@@ -3,7 +3,7 @@ package moveration.bot.data;
 import lombok.Getter;
 
 @Getter
-public class Guild {
+public class Guild {						//validates if there is any database for the given guildid, if not creates one, and loads it
 
 	private final long guildId;
 	private final Database database;

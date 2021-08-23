@@ -8,7 +8,7 @@ import lombok.val;
 import java.nio.file.Files;
 
 @UtilityClass
-public class TokenReader {
+public class TokenReader {					//reads the Bot token for bot startup
 
 	@SneakyThrows
 	public String getToken() {

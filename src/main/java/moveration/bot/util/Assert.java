@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 @UtilityClass
-public class Assert {
+public class Assert {							//checks for  NullPointerException and returns an error
 
 	public void allNotNull(@Nullable Object... objects) {
 		if (Arrays.stream(objects).anyMatch(Objects::isNull))

@@ -6,7 +6,7 @@ import moveration.bot.data.Guild;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
 
-public class DBCreator implements Command {
+public class DBCreator implements Command {						//listens for guildjoinevent and starts database creation after every guildjoinevent
 
 	@Override
 	public boolean matches(GenericEvent event) {

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Database implements DiskResource {
+public class Database implements DiskResource {			//manages the database/s
 
 	private final Connection connection;
 	private final Path databaseFile;

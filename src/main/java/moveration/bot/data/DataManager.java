@@ -13,7 +13,7 @@ import java.util.List;
 @UtilityClass
 @Getter
 @Log
-public class DataManager {
+public class DataManager {		//creates a list of all servers the bot joins
 
 	private final List<Guild> guilds = new ArrayList<>();
 

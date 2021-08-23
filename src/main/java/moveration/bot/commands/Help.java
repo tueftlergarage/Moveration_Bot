@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.regex.Pattern;
 
-public class Help implements Command {
+public class Help implements Command {		//listens for guildmessagerecievedevent and checks if message matches with help command
 
 	@Override
 	public boolean matches(GenericEvent event) {
@@ -30,13 +30,13 @@ public class Help implements Command {
 		if (command.isEmpty()) {
 			final String name = e.getAuthor().getName();
 			final String nick = e.getMessage().getMember().getNickname();
-			e.getMessage().getChannel().sendMessage(String.format("Do you need help? I can help you, %s. Use %s + help + [command] and I show you what it does.", nick == null ? name : nick, Constants.BOT_PREFIX)).queue();
+			e.getMessage().getChannel().sendMessage(String.format("Do you need help? I can help you, %s. Use %s + help + [command] and I show you what it does.", nick == null ? name : nick, Constants.BOT_PREFIX)).queue();//shows the user how help command works
 		} else {
 			if (command.equals("changeprefix")) {
-				e.getMessage().getChannel().sendMessage(String.format("This command changes the prefix from %s to [newprefix]", Constants.BOT_PREFIX)).queue();
+				e.getMessage().getChannel().sendMessage(String.format("This command changes the prefix from %s to [newprefix]", Constants.BOT_PREFIX)).queue(); //shows how to use changeprefix command
 			} else if (command.equals("help")) {
-				e.getMessage().getChannel().sendMessage(String.format("This command shows you how to interact with Moverationbot")).queue();
-			}
+				e.getMessage().getChannel().sendMessage(String.format("This command shows you how to interact with Moverationbot")).queue();//shows how to interact with the bot
+			}//TODO add new commands to this class
 		}
 	}
 }
