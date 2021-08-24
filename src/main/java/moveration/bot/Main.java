@@ -2,13 +2,13 @@ package moveration.bot;
 
 import lombok.SneakyThrows;
 import lombok.val;
-import moveration.bot.commands.ChangePrefix;
-import moveration.bot.commands.HelloWorld;
-import moveration.bot.commands.Help;
-import moveration.bot.commands.MoveTestCommand;
+import moveration.bot.commands.Command;
 import moveration.bot.data.DataManager;
 import moveration.bot.io.TokenReader;
 import net.dv8tion.jda.api.JDABuilder;
+import org.reflections.Reflections;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class Main {
 
@@ -17,10 +17,13 @@ public class Main {
 		DataManager.loadData();
 		val jda = JDABuilder.createDefault(TokenReader.getToken()).build();
 		val eventManager = new EventManager();
-		eventManager.registerCommand(new HelloWorld());
-		eventManager.registerCommand(new MoveTestCommand());
-		eventManager.registerCommand(new Help());
-		eventManager.registerCommand(new ChangePrefix());
+		new Reflections().getSubTypesOf(Command.class).forEach(clazz -> {
+			try {
+				eventManager.registerCommand(clazz.getDeclaredConstructor().newInstance());
+			} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+		});
 		jda.addEventListener(eventManager);
 	}
 }

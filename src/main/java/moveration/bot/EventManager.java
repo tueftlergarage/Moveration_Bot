@@ -22,8 +22,7 @@ public class EventManager implements EventListener {
 		events
 				.stream()
 				.filter(command -> command.matches(event))
-				.peek(command -> log.info(command.toString()))
 				.findFirst()
-				.ifPresent(command -> command.handle(event));
+				.ifPresentOrElse(command -> command.handle(event), () -> System.out.printf("Discarding event %s", event));
 	}
 }
