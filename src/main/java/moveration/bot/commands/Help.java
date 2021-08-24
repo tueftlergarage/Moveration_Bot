@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.regex.Pattern;
 
-public class Help implements Command {		//listens for guildmessagerecievedevent and checks if message matches with help command
+public class Help implements Command {        //listens for guildmessagerecievedevent and checks if message matches with help command
 
 	@Override
 	public boolean matches(GenericEvent event) {

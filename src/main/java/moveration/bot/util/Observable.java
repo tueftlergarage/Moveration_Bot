@@ -6,6 +6,6 @@ public interface Observable<T> {
 
 	void deregisterObserver(Observer<T> observer);
 
-	void notifyObservers(T before, T after);
+	void notifyObservers(T t);
 
 }
