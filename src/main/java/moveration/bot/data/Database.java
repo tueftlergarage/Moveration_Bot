@@ -82,6 +82,7 @@ public class Database implements DiskResource {			//manages the database/s
 		}
 	}
 
+	//TODO don't delete first
 	@SneakyThrows
 	@Override
 	public void write() {

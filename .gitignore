@@ -168,10 +168,14 @@ $RECYCLE.BIN/
 
 # Windows Installer files
 *.cab
-*.msi
+*.msita
 *.msix
 *.msm
 *.msp
 
 # Windows shortcuts
 *.lnk
+
+#Docs
+docs/latex
+docs/html
