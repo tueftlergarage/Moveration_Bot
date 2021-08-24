@@ -54,7 +54,7 @@ public class DataManager implements Observable<List<GuildDiskEntry>> {
 		InfoOperations.createNew(infoFile);
 		val info = InfoOperations.load(infoFile);
 		DBOperations.generateDatabase(dbFile);
-		val guild = new Guild(guildId, DBOperations.loadRoles(dbFile));
+		val guild = new Guild(guildId, DBOperations.loadRoles(dbFile), info.prefix());
 		val checksum = ChecksumOperations.generateChecksum(dbFile);
 		val entry = new GuildDiskEntry(guild, info, checksum, guildFolder);
 		guilds.add(entry);
@@ -76,8 +76,8 @@ public class DataManager implements Observable<List<GuildDiskEntry>> {
 				val infoFile = path.resolve("info.json");
 				val dbFile = path.resolve("database.db");
 				val checksumFile = path.resolve("checksum.md5");
-				val guild = new Guild(Long.parseLong(path.getFileName().toString()), DBOperations.loadRoles(dbFile));
 				val info = InfoOperations.load(infoFile);
+				val guild = new Guild(Long.parseLong(path.getFileName().toString()), DBOperations.loadRoles(dbFile), info.prefix());
 				val checksum = ChecksumOperations.loadChecksum(checksumFile);
 				guilds.add(new GuildDiskEntry(guild, info, checksum, path));
 			}
