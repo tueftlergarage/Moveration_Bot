@@ -15,7 +15,7 @@ public class Help implements Command {        //listens for guildmessagerecieved
 	@Override
 	public boolean matches(GenericEvent event) {
 		if (!(event instanceof GuildMessageReceivedEvent e)) return false;
-		return StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuild(e.getGuild().getIdLong())).matches("help ?(.*)");
+		return StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuildEntry(e.getGuild().getIdLong()).guild()).matches("help ?(.*)");
 	}
 
 	@Override

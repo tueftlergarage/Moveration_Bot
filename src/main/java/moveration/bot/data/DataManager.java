@@ -25,12 +25,30 @@ import java.util.List;
 @Getter
 @Log
 //TODO call observers
-public class DataManager implements Observable<List<GuildDiskEntry>> {
+public class DataManager {
 
-	private final List<Observer<List<GuildDiskEntry>>> observers = new ArrayList<>();
 	private final List<GuildDiskEntry> guilds = new ArrayList<>();
+	public final Observable<List<GuildDiskEntry>> observable = new Observable<>() {
 
-	public GuildDiskEntry getGuild(long guildId) {
+		private final List<Observer<List<GuildDiskEntry>>> observers = new ArrayList<>();
+
+		@Override
+		public void registerObserver(Observer<List<GuildDiskEntry>> observer) {
+			observers.add(observer);
+		}
+
+		@Override
+		public void deregisterObserver(Observer<List<GuildDiskEntry>> observer) {
+			observers.remove(observer);
+		}
+
+		@Override
+		public void notifyObservers(List<GuildDiskEntry> guildDiskEntries) {
+			observers.forEach(o -> o.onNotification(guildDiskEntries));
+		}
+	};
+
+	public GuildDiskEntry getGuildEntry(long guildId) {
 		return guilds.stream()
 				.filter(guild -> guild.guild().getGuildId() == guildId)
 				.findFirst()
@@ -58,7 +76,7 @@ public class DataManager implements Observable<List<GuildDiskEntry>> {
 		val checksum = ChecksumOperations.generateChecksum(dbFile);
 		val entry = new GuildDiskEntry(guild, info, checksum, guildFolder);
 		guilds.add(entry);
-		notifyObservers(guilds);
+		observable.notifyObservers(guilds);
 		return entry;
 	}
 
@@ -92,20 +110,5 @@ public class DataManager implements Observable<List<GuildDiskEntry>> {
 	@SneakyThrows
 	private void preparePath() {
 		Files.createDirectories(PathResolver.getGuildFoldersPath());
-	}
-
-	@Override
-	public void registerObserver(Observer<List<GuildDiskEntry>> observer) {
-		observers.add(observer);
-	}
-
-	@Override
-	public void deregisterObserver(Observer<List<GuildDiskEntry>> observer) {
-		observers.remove(observer);
-	}
-
-	@Override
-	public void notifyObservers(List<GuildDiskEntry> list) {
-		observers.forEach(o -> o.onNotification(list));
 	}
 }

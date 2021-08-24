@@ -23,7 +23,7 @@ public class MoveTestCommand implements Command {
 	@Override
 	public boolean matches(GenericEvent event) {
 		if (event instanceof GuildMessageReceivedEvent e &&
-		    StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuild(e.getGuild().getIdLong())).matches(regex))
+		    StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuildEntry(e.getGuild().getIdLong()).guild()).matches(regex))
 			return true;
 		return event instanceof GuildMessageReactionAddEvent r &&
 		       sentMessages.contains(r.getReaction().getMessageIdLong());

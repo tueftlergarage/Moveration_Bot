@@ -15,7 +15,7 @@ public class ChangePrefix implements Command {
 	@Override
 	public boolean matches(GenericEvent event) {
 		if (!(event instanceof GuildMessageReceivedEvent e)) return false;
-		return StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuild(e.getGuild().getIdLong())).matches("changeprefix .+");
+		return StringUtil.stripPrefix(e.getMessage().getContentRaw(), DataManager.getGuildEntry(e.getGuild().getIdLong()).guild()).matches("changeprefix .+");
 	}
 
 	@Override

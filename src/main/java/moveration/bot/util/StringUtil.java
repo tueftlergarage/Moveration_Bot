@@ -8,6 +8,6 @@ import moveration.bot.data.Guild;
 public class StringUtil {
 
 	public String stripPrefix(String s, Guild guild) {
-		return s.substring(DataManager.getGuild(guild.getGuildId()).info().prefix().length());
+		return s.substring(DataManager.getGuildEntry(guild.getGuildId()).info().prefix().length());
 	}
 }

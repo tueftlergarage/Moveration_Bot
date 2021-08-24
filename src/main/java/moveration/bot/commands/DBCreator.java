@@ -6,7 +6,7 @@ import moveration.bot.data.Guild;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
 
-public class DBCreator implements Command {                        //listens for guildjoinevent and starts database creation after every guildjoinevent
+public class DBCreator implements Command {
 
 	@Override
 	public boolean matches(GenericEvent event) {
@@ -16,6 +16,6 @@ public class DBCreator implements Command {                        //listens for
 	@Override
 	public void handle(GenericEvent event) {
 		val e = ((GuildJoinEvent) event);
-		DataManager.addGuild(new Guild(e.getGuild().getIdLong()));
+		DataManager.createNewGuild(e.getGuild().getIdLong());
 	}
 }
